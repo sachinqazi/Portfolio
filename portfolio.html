@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Portfolio - Reels, Analytics & Social Media Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #1A1A2E;
+            --light: #F5F5F5;
+            --text: #2D3436;
+            --border: #E0E0E0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            background: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--primary);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 7s ease-in-out infinite reverse;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.1;
+        }
+
+        .hero .highlight {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 5px;
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .section-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* Dashboard Section */
+        .dashboards {
+            background: white;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .dashboard-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .dashboard-card:hover::before {
+            left: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .dashboard-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .dashboard-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .card-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .card-link:hover {
+            gap: 1rem;
+        }
+
+        /* Reels Section */
+        .reels {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .reels h2,
+        .reels .section-subtitle {
+            color: white;
+        }
+
+        .reels h2::after {
+            background: var(--accent);
+        }
+
+        .reels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .reel-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 9/16;
+            background: #000;
+            cursor: pointer;
+            group: hover;
+        }
+
+        .reel-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        .reel-card:hover::before {
+            opacity: 1;
+        }
+
+        .reel-thumbnail {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .reel-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            transform: translateY(30px);
+            transition: transform 0.3s;
+            z-index: 20;
+        }
+
+        .reel-card:hover .reel-info {
+            transform: translateY(0);
+        }
+
+        .reel-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .reel-stats {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* Analytics Section */
+        .analytics {
+            background: white;
+        }
+
+        .analytics-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .analytics-left {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--primary), #ff8787);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+        }
+
+        .stat-box:nth-child(2) {
+            background: linear-gradient(135deg, var(--secondary), #45b7aa);
+        }
+
+        .stat-box:nth-child(3) {
+            background: linear-gradient(135deg, var(--accent), #ffd700);
+            color: var(--dark);
+        }
+
+        .stat-box:nth-child(4) {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: var(--dark);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .analytics-right {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 15px;
+            padding: 2rem;
+        }
+
+        .analytics-right h3 {
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-item:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .metric-value {
+            font-size: 1.3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Social Links Section */
+        .social {
+            background: linear-gradient(135deg, var(--dark), #2d3561);
+            color: white;
+            text-align: center;
+        }
+
+        .social h2,
+        .social .section-subtitle {
+            color: white;
+        }
+
+        .social h2::after {
+            background: var(--secondary);
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-top: 3px solid var(--primary);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .analytics-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Modal for Reel Details */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            animation: slideDown 0.3s;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: var(--dark);
+        }
+
+        .modal h2 {
+            color: var(--dark);
+            margin-top: 0;
+        }
+
+        .modal p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .modal-video {
+            width: 100%;
+            border-radius: 10px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav>
+            <div class="logo">📊 Portfolio</div>
+            <ul>
+                <li><a href="#dashboards">Dashboards</a></li>
+                <li><a href="#reels">Reels</a></li>
+                <li><a href="#analytics">Analytics</a></li>
+                <li><a href="#social">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to my <span class="highlight">Marketing Portfolio</span></h1>
+            <p>Showcase your social media expertise, video content, and data-driven marketing insights with style</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('dashboards').scrollIntoView({behavior: 'smooth'})">
+                    View Dashboards
+                </button>
+                <button class="btn btn-secondary" onclick="document.getElementById('social').scrollIntoView({behavior: 'smooth'})">
+                    Get in Touch
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboards Section -->
+    <section id="dashboards" class="dashboards">
+        <h2>Social Media Dashboards</h2>
+        <p class="section-subtitle">Real-time insights from your Instagram and YouTube channels. Connect your accounts and watch your metrics grow.</p>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">📱</div>
+                <h3>Instagram Analytics</h3>
+                <p>Track followers, engagement rates, reach, impressions, and top-performing posts in real-time.</p>
+                <a href="https://instagram.com" class="card-link" target="_blank">View Dashboard →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">▶️</div>
+                <h3>YouTube Analytics</h3>
+                <p>Monitor views, watch time, subscriber growth, and audience demographics across your channels.</p>
+                <a href="https://youtube.com" class="card-link" target="_blank">View Dashboard →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">📈</div>
+                <h3>Growth Metrics</h3>
+                <p>Compare performance across platforms, identify trends, and optimize your content strategy.</p>
+                <a href="#" class="card-link">Explore Data →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">🎯</div>
+                <h3>Audience Insights</h3>
+                <p>Understand your audience demographics, behavior patterns, and engagement preferences.</p>
+                <a href="#" class="card-link">See Insights →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">💬</div>
+                <h3>Engagement Tracker</h3>
+                <p>Monitor comments, replies, saves, and shares across all your social media platforms.</p>
+                <a href="#" class="card-link">Track Engagement →</a>
+            </div>
+
+            <div class="dashboard-card">
+                <div class="card-icon">🚀</div>
+                <h3>Campaign Manager</h3>
+                <p>Plan, execute, and measure the success of your marketing campaigns in one place.</p>
+                <a href="#" class="card-link">Manage Campaigns →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reels Section -->
+    <section id="reels" class="reels">
+        <h2>Featured Reels & Videos</h2>
+        <p class="section-subtitle">Check out my best-performing video content. Click any reel to see more details!</p>
+        
+        <div class="reels-grid">
+            <div class="reel-card" onclick="openModal('reel1')">
+                <div class="reel-thumbnail">
+                    📸
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Trending Marketing Tips</div>
+                    <div class="reel-stats">👁️ 125K views • 8.2K likes</div>
+                </div>
+            </div>
+
+            <div class="reel-card" onclick="openModal('reel2')">
+                <div class="reel-thumbnail">
+                    🎬
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Social Media Growth Hacks</div>
+                    <div class="reel-stats">👁️ 98K views • 6.5K likes</div>
+                </div>
+            </div>
+
+            <div class="reel-card" onclick="openModal('reel3')">
+                <div class="reel-thumbnail">
+                    ✨
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Content Creation Secrets</div>
+                    <div class="reel-stats">👁️ 156K views • 9.8K likes</div>
+                </div>
+            </div>
+
+            <div class="reel-card" onclick="openModal('reel4')">
+                <div class="reel-thumbnail">
+                    🎯
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Analytics Deep Dive</div>
+                    <div class="reel-stats">👁️ 87K views • 5.3K likes</div>
+                </div>
+            </div>
+
+            <div class="reel-card" onclick="openModal('reel5')">
+                <div class="reel-thumbnail">
+                    💡
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Viral Video Strategy</div>
+                    <div class="reel-stats">👁️ 203K views • 12.5K likes</div>
+                </div>
+            </div>
+
+            <div class="reel-card" onclick="openModal('reel6')">
+                <div class="reel-thumbnail">
+                    🌟
+                </div>
+                <div class="reel-info">
+                    <div class="reel-title">Influencer Collaboration</div>
+                    <div class="reel-stats">👁️ 165K views • 10.2K likes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="analytics">
+        <h2>Performance Analytics</h2>
+        <p class="section-subtitle">Here's what my content has achieved across all platforms</p>
+        
+        <div class="analytics-container">
+            <div class="analytics-left">
+                <div class="stat-box">
+                    <div class="stat-number">2.5M+</div>
+                    <div class="stat-label">Total Followers</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">45M+</div>
+                    <div class="stat-label">Total Views</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">8.2%</div>
+                    <div class="stat-label">Avg Engagement</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">156</div>
+                    <div class="stat-label">Videos Created</div>
+                </div>
+            </div>
+
+            <div class="analytics-right">
+                <h3>Platform Breakdown</h3>
+                <div class="metric-item">
+                    <span class="metric-label">📱 Instagram</span>
+                    <span class="metric-value">1.2M followers</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">▶️ YouTube</span>
+                    <span class="metric-value">856K subscribers</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">𝕏 Twitter</span>
+                    <span class="metric-value">445K followers</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">💼 LinkedIn</span>
+                    <span class="metric-value">325K connections</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">🎵 TikTok</span>
+                    <span class="metric-value">678K followers</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">📌 Pinterest</span>
+                    <span class="metric-value">234K followers</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section id="social" class="social">
+        <h2>Let's Connect</h2>
+        <p class="section-subtitle">Follow me on social media or get in touch for collaborations</p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com" class="social-btn" title="Instagram" target="_blank">📱</a>
+            <a href="https://youtube.com" class="social-btn" title="YouTube" target="_blank">▶️</a>
+            <a href="https://twitter.com" class="social-btn" title="Twitter" target="_blank">𝕏</a>
+            <a href="https://linkedin.com" class="social-btn" title="LinkedIn" target="_blank">💼</a>
+            <a href="https://tiktok.com" class="social-btn" title="TikTok" target="_blank">🎵</a>
+            <a href="mailto:your.email@example.com" class="social-btn" title="Email">✉️</a>
+        </div>
+        
+        <p style="margin-top: 2rem; opacity: 0.8;">📧 Email: your.email@example.com | 📱 Phone: +91 XXXXXX XXXXX</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+        <p>Built with passion for digital marketing | Hosted on Render/Framer</p>
+    </footer>
+
+    <!-- Modal for Reel Details -->
+    <div id="reelModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Reel Title</h2>
+            <p id="modalDescription">Reel description goes here</p>
+            <div id="modalStats" style="margin: 1.5rem 0; padding: 1rem; background: #f5f5f5; border-radius: 10px;">
+            </div>
+            <a id="modalLink" href="#" target="_blank" class="btn btn-primary" style="width: 100%; text-align: center;">Watch Full Video →</a>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const reelData = {
+            reel1: {
+                title: "Trending Marketing Tips",
+                description: "Discover the top 5 marketing trends that are transforming the industry in 2024. From AI-powered content creation to micro-influencer partnerships, learn how to stay ahead of the curve.",
+                stats: "👁️ 125,432 views • 8,234 likes • 1,256 shares • 3.2% engagement rate",
+                link: "https://instagram.com/your_username"
+            },
+            reel2: {
+                title: "Social Media Growth Hacks",
+                description: "Proven strategies to grow your social media presence from 0 to 100K followers. This reel covers hashtag strategy, posting times, content pillars, and engagement tactics.",
+                stats: "👁️ 98,156 views • 6,543 likes • 892 shares • 2.8% engagement rate",
+                link: "https://instagram.com/your_username"
+            },
+            reel3: {
+                title: "Content Creation Secrets",
+                description: "Behind-the-scenes look at how I create viral-worthy content. Equipment recommendations, editing software tips, and creative ideation processes shared.",
+                stats: "👁️ 156,789 views • 9,876 likes • 2,145 shares • 4.1% engagement rate",
+                link: "https://instagram.com/your_username"
+            },
+            reel4: {
+                title: "Analytics Deep Dive",
+                description: "Understanding your analytics is crucial for growth. This reel breaks down key metrics, how to read them, and what actions to take based on your data.",
+                stats: "👁️ 87,234 views • 5,321 likes • 743 shares • 2.4% engagement rate",
+                link: "https://youtube.com"
+            },
+            reel5: {
+                title: "Viral Video Strategy",
+                description: "What makes a video go viral? Timing, trends, emotions, and shareability. Learn the formula used by top creators to achieve millions of views.",
+                stats: "👁️ 203,456 views • 12,567 likes • 3,890 shares • 5.2% engagement rate",
+                link: "https://instagram.com/your_username"
+            },
+            reel6: {
+                title: "Influencer Collaboration",
+                description: "How to successfully collaborate with influencers to amplify your brand. Tips on finding the right partners, negotiating deals, and measuring ROI.",
+                stats: "👁️ 165,432 views • 10,234 likes • 2,654 shares • 4.8% engagement rate",
+                link: "https://instagram.com/your_username"
+            }
+        };
+
+        function openModal(reelId) {
+            const data = reelData[reelId];
+            document.getElementById('modalTitle').textContent = data.title;
+            document.getElementById('modalDescription').textContent = data.description;
+            document.getElementById('modalStats').textContent = data.stats;
+            document.getElementById('modalLink').href = data.link;
+            document.getElementById('reelModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('reelModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('reelModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Smooth scroll enhancement
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for elements
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.dashboard-card, .stat-box, .reel-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
