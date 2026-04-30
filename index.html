@@ -12,13 +12,16 @@
         }
 
         :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #1A1A2E;
-            --light: #F5F5F5;
-            --text: #2D3436;
-            --border: #E0E0E0;
+            --primary: #8B0000;
+            --secondary: #C41E3A;
+            --accent: #DC143C;
+            --dark: #2B0000;
+            --light: #F8F4F1;
+            --text: #1A1A1A;
+            --border: #D4A5A5;
+            --maroon-light: #A0522D;
+            --maroon-dark: #5C0A0A;
+            --gold-accent: #D4AF37;
         }
 
         html {
@@ -38,11 +41,11 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, var(--dark) 0%, var(--maroon-dark) 100%);
             backdrop-filter: blur(10px);
-            border-bottom: 2px solid var(--primary);
+            border-bottom: 3px solid var(--accent);
             padding: 1rem 2rem;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 30px rgba(139, 0, 0, 0.3);
         }
 
         nav {
@@ -56,11 +59,12 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: -1px;
+            color: #FFD700;
         }
 
         nav ul {
@@ -72,7 +76,7 @@
 
         nav a {
             text-decoration: none;
-            color: var(--text);
+            color: #FFFFFF;
             font-weight: 600;
             position: relative;
             transition: color 0.3s;
@@ -84,8 +88,8 @@
             bottom: -5px;
             left: 0;
             width: 0;
-            height: 2px;
-            background: var(--primary);
+            height: 3px;
+            background: var(--accent);
             transition: width 0.3s;
         }
 
@@ -100,7 +104,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #3B0000 0%, #5C0A0A 50%, #2B0000 100%);
             overflow: hidden;
             padding: 2rem;
         }
@@ -110,9 +114,9 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: var(--primary);
+            background: #DC143C;
             border-radius: 50%;
-            opacity: 0.1;
+            opacity: 0.15;
             animation: float 6s ease-in-out infinite;
             top: -100px;
             right: -100px;
@@ -123,9 +127,9 @@
             position: absolute;
             width: 400px;
             height: 400px;
-            background: var(--secondary);
+            background: #C41E3A;
             border-radius: 50%;
-            opacity: 0.1;
+            opacity: 0.15;
             animation: float 7s ease-in-out infinite reverse;
             bottom: -100px;
             left: -100px;
@@ -159,12 +163,12 @@
             font-size: 4rem;
             font-weight: 900;
             margin-bottom: 1rem;
-            color: var(--dark);
+            color: #FFE5E5;
             line-height: 1.1;
         }
 
         .hero .highlight {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #FFD700, #FFA500);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -172,7 +176,7 @@
 
         .hero p {
             font-size: 1.3rem;
-            color: #666;
+            color: #D4A5A5;
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
@@ -201,12 +205,12 @@
         .btn-primary {
             background: var(--primary);
             color: white;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.4);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.5);
         }
 
         .btn-secondary {
@@ -266,8 +270,8 @@
         }
 
         .dashboard-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
-            border: 2px solid var(--border);
+            background: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
+            border: 2px solid #D4A5A5;
             border-radius: 15px;
             padding: 2rem;
             cursor: pointer;
@@ -293,8 +297,9 @@
 
         .dashboard-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 50px rgba(139, 0, 0, 0.2);
             border-color: var(--primary);
+            background: linear-gradient(135deg, #FFE5E5 0%, #FFD4D4 100%);
         }
 
         .card-icon {
@@ -330,7 +335,7 @@
 
         /* Reels Section */
         .reels {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B0000 0%, #5C0A0A 50%, #2B0000 100%);
             color: white;
         }
 
@@ -364,7 +369,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.4), rgba(196, 30, 58, 0.4));
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 10;
@@ -377,7 +382,7 @@
         .reel-thumbnail {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #8B0000, #5C0A0A);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -431,26 +436,26 @@
         }
 
         .stat-box {
-            background: linear-gradient(135deg, var(--primary), #ff8787);
+            background: linear-gradient(135deg, #8B0000, #A52A2A);
             color: white;
             padding: 2rem;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.2);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
         }
 
         .stat-box:nth-child(2) {
-            background: linear-gradient(135deg, var(--secondary), #45b7aa);
+            background: linear-gradient(135deg, #C41E3A, #DC143C);
         }
 
         .stat-box:nth-child(3) {
-            background: linear-gradient(135deg, var(--accent), #ffd700);
-            color: var(--dark);
+            background: linear-gradient(135deg, #D4AF37, #FFD700);
+            color: #2B0000;
         }
 
         .stat-box:nth-child(4) {
-            background: linear-gradient(135deg, #a8edea, #fed6e3);
-            color: var(--dark);
+            background: linear-gradient(135deg, #8B0000, #6B0000);
+            color: white;
         }
 
         .stat-number {
@@ -505,7 +510,7 @@
 
         /* Social Links Section */
         .social {
-            background: linear-gradient(135deg, var(--dark), #2d3561);
+            background: linear-gradient(135deg, #2B0000, #5C0A0A);
             color: white;
             text-align: center;
         }
@@ -516,7 +521,7 @@
         }
 
         .social h2::after {
-            background: var(--secondary);
+            background: #FFD700;
             margin: 0 auto;
         }
 
@@ -532,7 +537,7 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            border: 2px solid white;
+            border: 2px solid #FFD700;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -545,17 +550,17 @@
 
         .social-btn:hover {
             background: var(--primary);
-            border-color: var(--primary);
+            border-color: #FFD700;
             transform: translateY(-5px);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
+            background: #2B0000;
             color: white;
             text-align: center;
             padding: 2rem;
-            border-top: 3px solid var(--primary);
+            border-top: 3px solid #FFD700;
         }
 
         footer p {
